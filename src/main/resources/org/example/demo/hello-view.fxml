@@ -7,7 +7,7 @@
 <VBox xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.demo.FirstratPredictionController">
     <MenuBar>
         <Menu text="File">
-            <MenuItem text="Exit" />
+            <MenuItem text="Parameters" onAction="#openParameters"/>
         </Menu>
     </MenuBar>
     <GridPane>
@@ -17,9 +17,9 @@
             </HBox>
             <HBox alignment="CENTER">
                 <Label text="Price:" />
-                <Spinner fx:id="spinnerPriceProduct1" editable="true" >
+                <Spinner fx:id="spinnerPriceProduct1" editable="true">
                     <valueFactory>
-                        <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="10000" initialValue="0" amountToStepBy="1"/>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="0" max="10000" min="0" />
                     </valueFactory>
                 </Spinner>
             </HBox>
@@ -27,7 +27,7 @@
                 <Label text="Quantity:" />
                 <Spinner fx:id="spinnerQuantityProduct1" editable="true">
                     <valueFactory>
-                        <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="1000" initialValue="0" amountToStepBy="1"/>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="0" max="1000" min="0" />
                     </valueFactory>
                 </Spinner>
             </HBox>
@@ -38,17 +38,17 @@
             </HBox>
             <HBox alignment="CENTER">
                 <Label text="Price:" />
-                <Spinner fx:id="spinnerPriceProduct2" editable="true" >
+                <Spinner fx:id="spinnerPriceProduct2" editable="true">
                     <valueFactory>
-                        <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="10000" initialValue="0" amountToStepBy="1"/>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="0" max="10000" min="0" />
                     </valueFactory>
                 </Spinner>
             </HBox>
             <HBox>
                 <Label text="Quantity:" />
-                <Spinner fx:id="spinnerQuantityProduct2" editable="true" >
+                <Spinner fx:id="spinnerQuantityProduct2" editable="true">
                     <valueFactory>
-                        <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="1000" initialValue="0" amountToStepBy="1"/>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="0" max="1000" min="0" />
                     </valueFactory>
                 </Spinner>
             </HBox>
@@ -59,17 +59,17 @@
             </HBox>
             <HBox alignment="CENTER">
                 <Label text="Quantity 1:" />
-                <Spinner fx:id="spinnerRawMaterials1" editable="true" >
+                <Spinner fx:id="spinnerRawMaterials1" editable="true">
                     <valueFactory>
-                        <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="10000" initialValue="0" amountToStepBy="1"/>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="0" max="10000" min="0" />
                     </valueFactory>
                 </Spinner>
             </HBox>
             <HBox>
                 <Label text="Quantity 2:" />
-                <Spinner fx:id="spinnerRawMaterials2" editable="true" >
+                <Spinner fx:id="spinnerRawMaterials2" editable="true">
                     <valueFactory>
-                        <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="10000" initialValue="0" amountToStepBy="1"/>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="0" max="10000" min="0" />
                     </valueFactory>
                 </Spinner>
             </HBox>
@@ -80,17 +80,77 @@
             </HBox>
             <HBox>
                 <Label text="Number:" />
-                <Spinner fx:id="spinnerMachine" editable="true" >
+                <Spinner fx:id="spinnerMachine" editable="true">
                     <valueFactory>
-                        <SpinnerValueFactory.IntegerSpinnerValueFactory min="0" max="100" initialValue="0" amountToStepBy="1"/>
+                        <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="0" max="100" min="0" />
                     </valueFactory>
                 </Spinner>
             </HBox>
         </VBox>
-        <Button mnemonicParsing="false" onAction="#calculate" text="PredictProduct1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <HBox GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <VBox alignment="CENTER">
+                <Button mnemonicParsing="false" onAction="#PredictProduct1" text="Predict Product1" />
+                <Button mnemonicParsing="false" onAction="#PredictProduct2" text="Predict Product2" />
+            </VBox>
+            <VBox>
+                <Button mnemonicParsing="false" onAction="#maximizeProfit" text="Maximize Profit" />
+            </VBox>
+        </HBox>
         <Button mnemonicParsing="false" text="Button" GridPane.columnIndex="2" GridPane.rowIndex="1" />
         <VBox.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" />
         </VBox.margin>
     </GridPane>
+   <HBox alignment="CENTER" visible="false" fx:id="label">
+         <Label text="Result" />
+   </HBox>
+   <GridPane visible="false" fx:id="gridpane">
+       <VBox prefHeight="113.0" prefWidth="217.0">
+           <HBox alignment="CENTER">
+               <Label alignment="CENTER" prefHeight="41.0" text="Product 1" />
+           </HBox>
+           <HBox>
+               <Label text="Quantity:" />
+               <Spinner fx:id="spinnerQuantityProduct1Result" editable="true">
+                   <valueFactory>
+                       <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="0" max="1000" min="0" />
+                   </valueFactory>
+               </Spinner>
+           </HBox>
+       </VBox>
+       <VBox prefHeight="113.0" prefWidth="217.0" GridPane.columnIndex="1">
+           <HBox alignment="CENTER">
+               <Label alignment="CENTER" prefHeight="41.0" text="Product 2" />
+           </HBox>
+           <HBox>
+               <Label text="Quantity:" />
+               <Spinner fx:id="spinnerQuantityProduct2Result" editable="true">
+                   <valueFactory>
+                       <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="0" max="1000" min="0" />
+                   </valueFactory>
+               </Spinner>
+           </HBox>
+       </VBox>
+       <VBox GridPane.columnIndex="2">
+           <HBox alignment="CENTER">
+               <Label alignment="CENTER" prefHeight="41.0" text="Raw Materials" />
+           </HBox>
+           <HBox alignment="CENTER">
+               <Label text="Quantity 1:" />
+               <Spinner fx:id="spinnerRawMaterials1Result" editable="true">
+                   <valueFactory>
+                       <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="0" max="10000" min="0" />
+                   </valueFactory>
+               </Spinner>
+           </HBox>
+           <HBox>
+               <Label text="Quantity 2:" />
+               <Spinner fx:id="spinnerRawMaterials2Result" editable="true">
+                   <valueFactory>
+                       <SpinnerValueFactory.IntegerSpinnerValueFactory amountToStepBy="1" initialValue="0" max="10000" min="0" />
+                   </valueFactory>
+               </Spinner>
+           </HBox>
+       </VBox>
+   </GridPane>
 </VBox>

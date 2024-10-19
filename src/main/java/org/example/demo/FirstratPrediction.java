@@ -115,5 +115,24 @@ public class FirstratPrediction {
     public int predictQuantityRawMaterial2() {
         return this.quantityRawMaterial2 - this.quantityProduct1 - this.quantityProduct2*2;
     }
+
+    public int[] maximizeProfit(){
+        int product1 = 0;
+        int product2 = this.numberHoursforMachine / 8;
+        int[] result = new int[3];
+        result[0] = product1;
+        result[1] = product2;
+        result[2] = product1*this.priceProduct1 + product2*this.priceProduct2;
+        while (product2 >= 0) {
+            product2 -= 1;
+            product1 += 2;
+            if (product1*this.priceProduct1 + product2*this.priceProduct2 > result[2]) {
+                result[0] = product1;
+                result[1] = product2;
+                result[2] = product1*this.priceProduct1 + product2*this.priceProduct2;
+            }
+        }
+        return result;
+    }
 }
 
